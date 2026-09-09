@@ -33,32 +33,6 @@ Designed for [Cake & Crumb Bakery](https://github.com/tnuislostq/bakery-website)
 
 ---
 
-## 🚀 How to Host on Netlify
-
-### Method 1: Instant Drag & Drop (Takes 30 Seconds)
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Drag and drop the extracted `bakery-website` folder directly into the designated area in your browser.
-3. Your website goes live immediately with a free `.netlify.app` link!
-
----
-
-### Method 2: Connect via GitHub (Automatic Updates)
-1. Push this folder to your repository:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: cute glassmorphism cake ordering website with custom builder"
-   git branch -M main
-   git remote add origin https://github.com/tnuislostq/bakery-website.git
-   git push -u origin main --force
-   ```
-2. Log into [Netlify](https://www.netlify.com/) and click **"Add new site"** > **"Import an existing project"**.
-3. Select **GitHub** and choose your repository: `tnuislostq/bakery-website`.
-4. Netlify will automatically read the included `netlify.toml` configuration:
-   - **Publish directory:** `.` (or `dist` if building with Vite)
-5. Click **Deploy Site**. Every time you push changes to GitHub in the future, Netlify will automatically update your live website!
-
----
 
 ## 💻 Local Preview
 Double-click `index.html` to view the website locally in any browser.
