@@ -1,153 +1,149 @@
 # 🍰 Cake & Crumb - Artisanal Bakery Website
 
-Modern, interactive bakery website with custom cake builder and WhatsApp ordering.
+A full-featured e-commerce bakery website built from scratch to showcase modern web development skills.
 
 ## 🌐 [Live Demo](https://cake-and-crumb.netlify.app)
 
-## ✨ Features
+## 🎯 Project Overview
 
-- 🎂 **8+ Signature Cakes** - Korean Bento, Vintage Lambeth, Belgian Chocolate, and more
-- 🎨 **Custom Cake Builder** - 6-step interactive wizard with live price calculator
-- 🌱 **100% Eggless Specialty** - Dedicated vegan-friendly options
-- 📖 **Recipes & Skills** - Baker's secret recipes with pro tips
-- 🛒 **Shopping Cart** - WhatsApp integration for easy ordering
-- 📱 **Fully Responsive** - Mobile, tablet, and desktop optimized
-- ✨ **Glassmorphism Design** - Modern UI with smooth animations
+This is a **production-ready single-page application** demonstrating:
+- Modern React patterns (hooks, state management, performance optimization)
+- Advanced CSS (glassmorphism, animations, responsive design)
+- Full user experience (product catalog, custom builder, cart, checkout)
+- Real-world API integration (WhatsApp Business)
+- No build tools required (React via CDN)
 
-## 🛠️ Tech Stack
+## ✨ Key Features Built
 
-- **React 18** (via CDN + Babel)
-- **Tailwind CSS** (utility-first styling)
-- **Google Fonts** (Plus Jakarta Sans, Playfair Display, Caveat)
-- **No build process** - Single HTML file deployment
+- **Interactive Product Catalog** - 8+ signature cakes with filtering, ratings, and detailed descriptions
+- **Custom Cake Builder** - 6-step interactive form with live price calculation
+- **Shopping Cart** - Add/remove items, adjust quantities with real-time totals
+- **Checkout Flow** - Customer form validation and WhatsApp API integration
+- **Recipe Showcase** - 3 detailed recipes with ingredients, steps, and pro tips
+- **Responsive Design** - Mobile-first approach (works seamlessly on all devices)
+- **Modern UI** - Glassmorphism effects with smooth animations and custom theme
 
-## 🚀 Quick Start
+## 🛠️ Technologies & Skills Demonstrated
 
-### 1. Clone the repository
+| Skill | Implementation |
+|-------|-----------------|
+| **React 18** | Functional components, hooks (useState, useMemo, useEffect), conditional rendering |
+| **State Management** | Cart logic, product filtering, custom builder state, checkout handling |
+| **Tailwind CSS** | Custom theme configuration, responsive utilities, animations, color palette |
+| **JavaScript (ES6+)** | Array methods (map, filter, reduce), event handling, dynamic calculations |
+| **UI/UX Design** | Mobile-responsive layouts, accessibility best practices, smooth animations |
+| **API Integration** | WhatsApp Business API for order submission |
+| **Deployment** | Netlify with CI/CD pipeline (auto-deploy on commit) |
+
+## 🚀 How to Run
+
 ```bash
 git clone https://github.com/tnuislostq/bakery-website.git
 cd bakery-website
-```
 
-### 2. Run a local server
-```bash
-# Python 3
+# Start local server
 python -m http.server 8000
-
-# OR Node.js
-npx live-server
+# Open http://localhost:8000
 ```
 
-### 3. Open in browser
-```
-http://localhost:8000
-```
+## 💡 Key Code Highlights
 
-## ⚙️ Customize Your Bakery
-
-Edit `index.html`:
-
-**Update bakery info:**
-- Line 530: Bakery name (`Cake & Crumb`)
-- Line 601: Location/tagline
-- Line 504: WhatsApp phone number (include country code)
-
-**Add/edit cakes:**
-- Lines 188-285: Modify `CAKE_CATALOG` array with your cakes
-
-**Change theme colors:**
-- Lines 21-60: Tailwind color configuration
-
-**Replace images:**
-- Update Unsplash URLs with your own product photos
-
-## 🌐 Deploy to Netlify
-
-1. Push code to GitHub
-2. Go to [Netlify](https://netlify.com)
-3. Click "New site from Git"
-4. Select your repository
-5. Deploy! (auto-deploys on every commit)
-
-## 📂 File Structure
-
-```
-bakery-website/
-├── index.html          # Single-file React app
-└── README.md          # This file
-```
-
-## 💡 Built With
-
-- **React Hooks** - useState, useMemo for state management
-- **Tailwind CSS** - Custom glassmorphism panels & animations
-- **CDN Delivery** - No npm install needed
-- **WhatsApp API** - Direct order messaging integration
-
-## 📝 Features Breakdown
-
-| Feature | Details |
-|---------|---------|
-| **Cake Menu** | Filter by category, view ratings & reviews |
-| **Custom Builder** | Choose flavor, design, size, message, topper |
-| **Price Calculator** | Real-time pricing based on customization |
-| **Shopping Cart** | Add/remove items, adjust quantities |
-| **Checkout** | Collect customer details, send via WhatsApp |
-| **Recipes** | 3 featured recipes with ingredients & steps |
-
-## 🎯 Customization Examples
-
-### Add a new cake:
+**Dynamic Price Calculation with useMemo (Performance Optimization):**
 ```javascript
-// In CAKE_CATALOG array (lines 188-285)
-{
-  id: 'cake-9',
-  title: 'Your Cake Name',
-  category: 'signature',
-  price: 999,
-  rating: 5.0,
-  reviewsCount: 10,
-  image: 'https://your-image-url.jpg',
-  description: 'Delicious description here',
-  tags: ['Tag1', 'Tag2'],
-  flavours: ['Flavor1', 'Flavor2']
-}
+const calculatedCustomPrice = useMemo(() => {
+  let base = 499;
+  if (customCake.weight.includes('1.0 kg')) base = 949;
+  if (customCake.weight.includes('1.5 kg')) base = 1399;
+  if (customCake.weight.includes('2.0 kg')) base = 1799;
+  
+  if (customCake.baseFlavour.includes('Biscoff') || 
+      customCake.baseFlavour.includes('Pistachio')) {
+    base += 100;
+  }
+  if (customCake.frostingStyle.includes('Vintage Lambeth')) {
+    base += 150;
+  }
+  if (customCake.topper !== 'None') {
+    base += 50;
+  }
+  return base;
+}, [customCake]);
 ```
 
-### Update WhatsApp number:
+**Cart Management with State Updates:**
 ```javascript
-// Line 504
-const waUrl = `https://api.whatsapp.com/send?phone=919876543210&text=...`;
-// Replace 919876543210 with your WhatsApp number
+const addToCart = (item) => {
+  setCart(prev => {
+    const existing = prev.find(i => i.id === item.id);
+    if (existing) {
+      return prev.map(i => 
+        i.id === item.id 
+          ? { ...i, quantity: i.quantity + 1 } 
+          : i
+      );
+    }
+    return [...prev, { ...item, quantity: 1 }];
+  });
+  setIsCartOpen(true);
+};
 ```
 
-## 🐛 Troubleshooting
+**Filter & Memoization Pattern:**
+```javascript
+const filteredCakes = useMemo(() => {
+  if (categoryFilter === 'all') return CAKE_CATALOG;
+  return CAKE_CATALOG.filter(cake => cake.category === categoryFilter);
+}, [categoryFilter]);
+```
 
-**Images not loading?**
-- Check image URLs are accessible
-- Use absolute URLs (not relative paths)
+## 📊 Project Stats
 
-**WhatsApp link not working?**
-- Ensure phone number includes country code (e.g., 91 for India)
-- Format: `phone=919876543210`
+- **8+ Products** with rich metadata (price, ratings, descriptions)
+- **6-Step Custom Builder** with live preview and dynamic pricing
+- **100% Responsive** - Optimized for 320px mobile to 4K displays
+- **3 Featured Recipes** with detailed ingredients and instructions
+- **Zero External Dependencies** - React & Tailwind via CDN (no npm needed)
+- **Live Deployment** - Auto-deploys to Netlify on every GitHub commit
+- **Smooth Animations** - Custom keyframes and Tailwind animations
 
-**Styling looks broken?**
-- Clear browser cache: `Cmd+Shift+R` (Mac) or `Ctrl+Shift+R` (Windows)
-- Check Tailwind CDN is loading
+## 🎨 Design & Architecture Decisions
 
-## 📱 Browser Support
+✅ **Glassmorphism Design** - Modern aesthetic with blur effects and transparency
+✅ **CDN-based React** - Demonstrates understanding of bundle optimization and quick prototyping
+✅ **Single HTML File** - Shows ability to organize complex applications without build tools
+✅ **Component State Patterns** - Clean separation of concerns with React hooks
+✅ **Responsive Mobile-First** - Tailwind utilities for seamless cross-device experience
+✅ **Performance Optimized** - useMemo for expensive calculations, efficient state management
 
-✅ Chrome, Firefox, Safari, Edge
-❌ Internet Explorer
+## 🔮 Future Enhancements
 
-## 📄 License
+- [ ] Payment gateway integration (Stripe/Razorpay)
+- [ ] User authentication & order history
+- [ ] Admin dashboard for inventory management
+- [ ] Email order confirmations
+- [ ] Customer reviews & ratings system
+- [ ] Firebase backend for data persistence
 
-Open source - Use freely for your bakery business!
+## 👨‍💻 About This Project
 
-## 🤝 Contributing
+I built this project to demonstrate my ability to:
 
-Found a bug? Have a feature idea? Open an [issue](https://github.com/tnuislostq/bakery-website/issues)!
+✅ **Build complete features** from UI design to functionality
+✅ **Write clean React code** with hooks and state management
+✅ **Create responsive, accessible interfaces** that work everywhere
+✅ **Deploy to production** and maintain live applications
+✅ **Think about user experience** and business requirements
+✅ **Problem-solve independently** and make architectural decisions
+
+## 📞 Connect With Me
+
+I'm open to discussing the code, architecture decisions, or opportunities!
+
+- **GitHub**: [github.com/tnuislostq](https://github.com/tnuislostq)
+- **LinkedIn**: [linkedin.com/in/tanu-vishwakarma-b904b1308](https://www.linkedin.com/in/tanu-vishwakarma-b904b1308)
+- **Email**: [tanu63867@gmail.com](mailto:tanu63867@gmail.com)
+- **Live Demo**: [cake-and-crumb.netlify.app](https://cake-and-crumb.netlify.app)
 
 ---
 
-Made with ❤️ for artisanal bakeries | [Visit Demo](https://cake-and-crumb.netlify.app)
+**Feel free to reach out! I'd love to discuss web development, React patterns, or explore opportunities to build amazing projects together.** 🚀✨
