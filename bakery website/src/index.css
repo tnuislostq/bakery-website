@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: linear-gradient(135deg, #ffeef6 0%, #fff7fb 25%, #f4efff 50%, #effaf5 75%, #fff1f2 100%);
+    background-attachment: fixed;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #3f313a;
+    overflow-x: hidden;
+  }
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px 0 rgba(244, 63, 94, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 24px -2px rgba(244, 63, 94, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 143, 177, 0.6);
+  box-shadow: 0 16px 36px -4px rgba(244, 63, 94, 0.15), 0 4px 12px rgba(255, 255, 255, 0.8);
+}
+
+.glass-btn-primary {
+  background: linear-gradient(135deg, #ff7b9f 0%, #f43f5e 100%);
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.35);
+  transition: all 0.25s ease;
+  color: white;
+}
+
+.glass-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(244, 63, 94, 0.45);
+}
+
+.glass-btn-secondary {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #e11d48;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.glass-btn-secondary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  color: #be123c;
+  box-shadow: 0 6px 20px rgba(244, 63, 94, 0.12);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #fb7185;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.25);
+}
+
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
