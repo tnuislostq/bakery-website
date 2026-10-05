@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cake & Crumbs | Home Bakery in Hazaribagh</title>
-<meta name="description" content="Eggless and classic cakes, baked fresh to order in Hazaribagh. Order on WhatsApp.">
+<title>Cake & Crumbs | Artisanal Home Bakery</title>
+<meta name="description" content="Handcrafted artisanal cakes, eggless specials, and custom celebration cakes. Order easily on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
@@ -17,31 +17,39 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
-        head: ['Rubik', 'sans-serif']
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        head: ['Rubik', 'sans-serif'],
+        serif: ['"Playfair Display"', 'serif']
       },
       colors: {
         berry: '#b0113f',
-        blush: '#ffe9ee',
-        rose2: '#ffd0dc'
+        berryHover: '#8e0e36',
+        blush: '#fff1f4',
+        blushLight: '#fff7f9',
+        roseBorder: '#ffd5df',
+        warmText: '#3b252c'
       }
     }
   }
 }
 </script>
 <style>
-  body { background: #fff; color: #4a2a35; font-family: 'Montserrat', sans-serif; }
-  h1, h2, h3, .fh { font-family: 'Rubik', sans-serif; color: #8e0e36; }
-  .btn { background: linear-gradient(180deg, #d4145a, #b0113f); color: #fff; font-weight: 600; border-radius: 999px; box-shadow: 0 6px 14px rgba(176, 17, 63, .28); }
-  .btn2 { background: #fff; color: #b0113f; font-weight: 600; border: 1.5px solid #e8a1b5; border-radius: 999px; }
-  .field { background: #fff; border: 1px solid #f0b9c8; border-radius: .8rem; padding: .6rem .8rem; font-size: .875rem; width: 100%; }
-  .field:focus, button:focus-visible, a:focus-visible { outline: 3px solid #d4145a; outline-offset: 2px; }
-  .tab { padding: .4rem 1rem; border-radius: 999px; font-size: .875rem; font-weight: 600; color: #b08a96; }
-  .tab[aria-pressed=true] { background: #b0113f; color: #fff; }
-  .card { background: #fff; border: 1px solid #fbd5df; border-radius: 1.25rem; }
-  .slide { animation: slide .25s ease-out; }
-  @keyframes slide { from { transform: translateX(100%); } to { transform: none; } }
-  @media (prefers-reduced-motion: reduce) { .slide { animation: none; } }
+  body { background: #ffffff; color: #3b252c; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+  .btn-berry { background: linear-gradient(180deg, #d4145a, #b0113f); color: #fff; font-weight: 600; border-radius: 9999px; box-shadow: 0 8px 18px rgba(176,17,63,0.25); transition: all 0.2s ease; }
+  .btn-berry:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(176,17,63,0.35); }
+  .btn-outline { background: #ffffff; color: #b0113f; font-weight: 600; border: 1.5px solid #e8a1b5; border-radius: 9999px; transition: all 0.2s ease; }
+  .btn-outline:hover { background: #fff1f4; border-color: #b0113f; }
+  .field { background: #fff; border: 1.5px solid #f2c0ce; border-radius: 0.9rem; padding: 0.65rem 0.85rem; font-size: 0.875rem; width: 100%; transition: border 0.15s ease; }
+  .field:focus { outline: none; border-color: #b0113f; box-shadow: 0 0 0 3px rgba(176,17,63,0.15); }
+  .card-bakery { background: #ffffff; border: 1px solid #ffd8e2; border-radius: 1.5rem; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .card-bakery:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(176,17,63,0.08); }
+  .tab-pill { padding: 0.45rem 1.1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; color: #875c68; transition: all 0.2s ease; cursor: pointer; }
+  .tab-pill[aria-pressed=true] { background: #b0113f; color: #ffffff; box-shadow: 0 4px 12px rgba(176,17,63,0.25); }
+  .slide-drawer { animation: slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+  .float-slow { animation: floatSlow 3.8s ease-in-out infinite; }
+  .float-delayed { animation: floatSlow 4.4s ease-in-out 1.2s infinite; }
+  @keyframes floatSlow { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(4deg); } }
 </style>
 </head>
 <body>
@@ -50,68 +58,116 @@ tailwind.config = {
 <script type="text/babel">
 const { useState, useMemo } = React;
 
-// Non-existent demo phone number
 const WHATSAPP_NUMBER = '910000000000';
-const IMG = (id, w = 600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=75`;
 
 const CAKES = [
-  { id: 'c1', title: 'Korean Bento Cake', category: 'bento', price: 499, tag: 'Bestseller', image: IMG('photo-1535141192574-5d4897c13136') },
-  { id: 'c2', title: 'Vintage Lambeth Red Velvet', category: 'signature', price: 1099, tag: 'Trending', image: IMG('photo-1588195538326-c5b1e9f80a1b') },
-  { id: 'c3', title: 'Belgian Truffle', category: 'signature', price: 949, tag: 'Eggless', image: IMG('photo-1578985545062-69928b1d9587') },
-  { id: 'c4', title: 'Wild Berry Naked Cake', category: 'signature', price: 1199, tag: 'Fresh fruit', image: IMG('photo-1565958011703-44f9829ba187') },
-  { id: 'c5', title: 'Biscoff Caramel Crunch', category: 'eggless', price: 999, tag: 'Eggless', image: IMG('photo-1557308536-ee471ef2c390') },
-  { id: 'c6', title: 'Strawberry Cupcakes (6)', category: 'treats', price: 449, tag: 'Box of 6', image: IMG('photo-1587668178277-295251f900ce') },
-  { id: 'c7', title: 'Pistachio Rose Cake', category: 'eggless', price: 1249, tag: 'Eggless', image: IMG('photo-1621303837174-89787a7d4729') },
-  { id: 'c8', title: 'Floral Meadow Tier', category: 'signature', price: 1499, tag: 'Tiered', image: IMG('photo-1535254973040-607b474cb50d') }
+  {
+    id: 'c1',
+    title: 'Korean Pastel Bento Cake',
+    category: 'bento',
+    price: 499,
+    tag: 'Bestseller',
+    image: 'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=800&q=80',
+    desc: 'Adorable mini lunchbox cake with silky vanilla buttercream and pastel hand-piped lettering.'
+  },
+  {
+    id: 'c2',
+    title: 'Vintage Lambeth Royal Velvet',
+    category: 'signature',
+    price: 1099,
+    tag: 'Trending',
+    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=700&q=80',
+    desc: 'Intricate royal over-piping frills with maraschino cherries and velour sponge tiers.'
+  },
+  {
+    id: 'c3',
+    title: 'Belgian Truffle Decadence',
+    category: 'signature',
+    price: 949,
+    tag: '100% Eggless',
+    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80',
+    desc: 'Pure 54% dark Belgian chocolate ganache layered with moist choco sponge and gold foil.'
+  },
+  {
+    id: 'c4',
+    title: 'Wild Berry Vanilla Naked Tier',
+    category: 'signature',
+    price: 1199,
+    tag: 'Fresh Berries',
+    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80',
+    desc: 'Madagascar vanilla tiers topped with fresh blueberries, strawberries, and rosemary.'
+  },
+  {
+    id: 'c5',
+    title: 'Lotus Biscoff Crunch Cake',
+    category: 'eggless',
+    price: 999,
+    tag: 'Eggless',
+    image: 'https://images.unsplash.com/photo-1557308536-ee471ef2c390?auto=format&fit=crop&w=700&q=80',
+    desc: 'Caramelized speculoos drip with crunchy biscuit crumble and whipped cinnamon cream.'
+  },
+  {
+    id: 'c6',
+    title: 'Strawberry Cloud Cupcakes',
+    category: 'treats',
+    price: 449,
+    tag: 'Box of 6',
+    image: 'https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=700&q=80',
+    desc: 'Fluffy vanilla cupcakes with roasted strawberry compote centers and sprinkles.'
+  },
+  {
+    id: 'c7',
+    title: 'Pistachio Rose Celebration',
+    category: 'eggless',
+    price: 1249,
+    tag: 'Eggless Special',
+    image: 'https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=700&q=80',
+    desc: 'Cardamom pistachio sponge layered with fragrant organic rose water mousse.'
+  },
+  {
+    id: 'c8',
+    title: 'Floral Meadow Dream Tier',
+    category: 'signature',
+    price: 1499,
+    tag: 'Grand Celebration',
+    image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=700&q=80',
+    desc: 'Handcrafted pressed buttercream wildflowers with edible gold dust and pearl beads.'
+  }
 ];
 
-const REVIEWS = [
-  { name: 'Priya S.', text: 'The bento cake was so cute and the sponge was incredibly soft.' },
-  { name: 'Ananya V.', text: 'The Lambeth piping was beautiful. It arrived perfectly packed.' },
-  { name: 'Rahul K.', text: 'The Biscoff cake was gone in five minutes.' }
+const FILTERS = [
+  ['all', 'All Treats 🍰'],
+  ['bento', 'Bento 🎀'],
+  ['signature', 'Signature 👑'],
+  ['eggless', '100% Eggless 🌱'],
+  ['treats', 'Cupcakes 🧁']
 ];
 
-const POPULAR = ['c1', 'c3', 'c5'];
 const FLAVOURS = ['Belgian Chocolate Truffle', 'Madagascar Vanilla Bean', 'Royal Red Velvet', 'Lotus Biscoff Dream', 'Rose Pistachio', 'Strawberry Shortcake'];
 const STYLES = ['Korean Minimalist Bento', 'Vintage Lambeth Frills', 'Pastel Ombre Buttercream', 'Semi-Naked Wildflower'];
-const SIZES = [['0.5 kg', 499], ['1.0 kg', 949], ['1.5 kg', 1399], ['2.0 kg', 1799]];
+const SIZES = [['0.5 kg (Bento)', 499], ['1.0 kg (Standard)', 949], ['1.5 kg (Celebration)', 1399], ['2.0 kg (Grand Tier)', 1799]];
 
-function Img({ src, alt, className }) {
-  const [bad, setBad] = useState(false);
-  if (bad) {
-    return <div role="img" aria-label={alt} className={className + ' bg-gradient-to-br from-pink-100 to-rose-200 flex items-center justify-center text-4xl'}>🎂</div>;
-  }
-  return <img src={src} alt={alt} loading="lazy" className={className} onError={() => setBad(true)} />;
-}
-
-function Logo({ size = 40 }) {
+function Logo() {
   return (
-    <span className="inline-flex items-center gap-2.5">
-      <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="24" fill="#b0113f" />
-        <rect x="10" y="35" width="28" height="3" rx="1.5" fill="#ffd0dc" />
-        <rect x="12" y="26" width="24" height="10" rx="3" fill="#fff" />
-        <rect x="16" y="18" width="16" height="9" rx="3" fill="#ffd0dc" />
-        <path d="M16 21 h16 v2 a2 2 0 0 1 -4 0 a2 2 0 0 1 -4 0 a2 2 0 0 1 -4 0 a2 2 0 0 1 -4 0Z" fill="#fff" />
-        <circle cx="24" cy="14" r="4.5" fill="#ff5c86" />
-        <path d="M21 10.5 Q24 7 27 10.5 Q24 9.5 21 10.5Z" fill="#8fd16f" />
-      </svg>
-      <span className="leading-none">
-        <span className="font-head font-bold text-xl text-berry block">Cake & Crumbs</span>
-        <span className="text-[10px] tracking-widest text-gray-500 uppercase">Home Bakery</span>
-      </span>
-    </span>
+    <a href="#" className="inline-flex items-center gap-3">
+      <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-berry flex items-center justify-center text-white text-xl shadow-md">
+        🎂
+      </div>
+      <div>
+        <span className="font-head font-bold text-xl text-berry block leading-tight">Cake & Crumbs</span>
+        <span className="text-[10px] tracking-widest font-semibold text-gray-400 uppercase">Artisanal Home Bakery</span>
+      </div>
+    </a>
   );
 }
 
-const WAVE = 'M0,80 L0,40 C27,35 107,6 160,8 C213,10 267,53 320,54 C373,55 427,13 480,14 C533,15 587,61 640,60 C693,59 747,12 800,10 C853,8 907,49 960,50 C1013,51 1067,17 1120,18 C1173,19 1227,57 1280,56 C1333,55 1413,19 1440,12 L1440,80 Z';
-function Edge({ bottom }) {
+function FrostingDrips() {
   return (
-    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"
-      className={`block w-full h-10 sm:h-16 lg:h-20 fill-blush ${bottom ? '-mt-px' : '-mb-px'}`}
-      style={bottom ? { transform: 'scaleY(-1)' } : undefined}>
-      <path d={WAVE} />
-    </svg>
+    <div className="w-full overflow-hidden leading-none -mt-1 pointer-events-none">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-14 sm:h-20 lg:h-24 fill-blush">
+        <path d="M0,0 L1440,0 L1440,35 C1380,38 1350,95 1300,95 C1260,95 1240,40 1190,40 C1140,40 1120,80 1070,80 C1020,80 1000,30 950,30 C900,30 880,105 820,105 C770,105 750,45 700,45 C650,45 630,90 580,90 C530,90 510,35 460,35 C410,35 390,75 340,75 C290,75 270,30 220,30 C170,30 150,95 90,95 C50,95 20,40 0,35 Z" />
+      </svg>
+    </div>
   );
 }
 
@@ -119,10 +175,17 @@ function App() {
   const [filter, setFilter] = useState('all');
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const [done, setDone] = useState(null);
   const [form, setForm] = useState({ name: '', phone: '', address: '', date: '' });
-  const [cake, setCake] = useState({ flavour: FLAVOURS[0], style: STYLES[0], size: SIZES[0][0], diet: 'Eggless', message: 'Happy Birthday!', topper: 'None' });
+
+  const [cake, setCake] = useState({
+    flavour: FLAVOURS[0],
+    style: STYLES[0],
+    size: SIZES[0][0],
+    diet: '100% Eggless 🌱',
+    message: 'Happy Birthday!',
+    topper: 'None'
+  });
 
   const customPrice = useMemo(() => {
     let p = SIZES.find(s => s[0] === cake.size)[1];
@@ -134,6 +197,7 @@ function App() {
 
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const count = cart.reduce((s, i) => s + i.qty, 0);
+  const displayedCakes = filter === 'all' ? CAKES : CAKES.filter(c => c.category === filter);
 
   const add = (item) => {
     setCart(prev => prev.find(i => i.id === item.id)
@@ -142,273 +206,406 @@ function App() {
     setCartOpen(true);
   };
 
-  const change = (id, d) => setCart(prev => prev.map(i => i.id === id ? { ...i, qty: i.qty + d } : i).filter(i => i.qty > 0));
+  const changeQty = (id, delta) => {
+    setCart(prev => prev.map(i => i.id === id ? { ...i, qty: i.qty + delta } : i).filter(i => i.qty > 0));
+  };
 
-  const addCustom = () => add({
-    id: 'custom-' + Date.now(),
-    image: CAKES[0].image,
-    price: customPrice,
-    title: `Custom: ${cake.flavour}, ${cake.size}`,
-    note: `${cake.style} · ${cake.diet} · "${cake.message}" · Topper: ${cake.topper}`
-  });
+  const addCustomCake = () => {
+    add({
+      id: 'custom-' + Date.now(),
+      image: 'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=800&q=80',
+      price: customPrice,
+      title: `Custom ${cake.flavour}`,
+      desc: `${cake.size} • ${cake.style} • ${cake.diet} • Message: "${cake.message}"`
+    });
+  };
 
   const checkout = (e) => {
     e.preventDefault();
-    const lines = cart.map(i => `• ${i.title}${i.note ? ' (' + i.note + ')' : ''} x${i.qty} - ₹${i.price * i.qty}`).join('\n');
-    const msg = `New order from Cake & Crumbs website\n\nName: ${form.name}\nPhone: ${form.phone}\nAddress: ${form.address}\nDate: ${form.date || 'Earliest available'}\n\n${lines}\n\nTotal: ₹${total}`;
+    const lines = cart.map(i => `• ${i.title}${i.desc ? ' (' + i.desc + ')' : ''} x${i.qty} - ₹${i.price * i.qty}`).join('\n');
+    const msg = `*New Cake Order from Cake & Crumbs!*\n\n*Name:* ${form.name}\n*Phone:* ${form.phone}\n*Address:* ${form.address}\n*Target Date:* ${form.date || 'Earliest available'}\n\n*Items:*\n${lines}\n\n*Total Amount:* ₹${total}`;
     setDone({ total, url: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}` });
     setCart([]);
     setCartOpen(false);
   };
 
-  const chip = (on) => `px-3 py-2 rounded-full text-sm font-medium border transition-colors ${on ? 'bg-berry text-white border-berry' : 'bg-white text-gray-700 border-rose2 hover:border-berry'}`;
-
   return (
-    <div className="min-h-screen overflow-x-clip">
-      {/* Navigation */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-rose2">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-          <a href="#" aria-label="Cake & Crumbs home"><Logo /></a>
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-gray-600">
-            <a href="#popular" className="hover:text-berry">Cakes</a>
-            <a href="#custom" className="hover:text-berry">Customize</a>
-            <a href="#gallery" className="hover:text-berry">Gallery</a>
-            <a href="#reviews" className="hover:text-berry">Reviews</a>
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-roseBorder">
+        <div className="max-w-6xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between gap-4">
+          <Logo />
+          <nav className="hidden md:flex gap-7 text-sm font-semibold text-gray-700">
+            <a href="#menu" className="hover:text-berry transition-colors">Cake Menu</a>
+            <a href="#custom" className="hover:text-berry transition-colors">Custom Studio</a>
+            <a href="#ingredients" className="hover:text-berry transition-colors">Our Secret</a>
+            <a href="#reviews" className="hover:text-berry transition-colors">Reviews</a>
           </nav>
-          <div className="flex items-center gap-2">
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" className="btn2 hidden sm:inline-block px-4 py-2 text-sm">WhatsApp us</a>
-            <button onClick={() => setCartOpen(true)} aria-label={`Open cart, ${count} items`} className="btn relative px-4 py-2 text-sm">
-              Cart
-              {count > 0 && <span className="absolute -top-2 -right-2 bg-white text-berry border border-berry text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">{count}</span>}
+          <div className="flex items-center gap-3">
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" className="btn-outline hidden sm:inline-block px-5 py-2 text-xs uppercase tracking-wider font-bold">
+              WhatsApp Order
+            </a>
+            <button onClick={() => setCartOpen(true)} className="btn-berry relative px-5 py-2.5 text-xs uppercase tracking-wider font-bold flex items-center gap-1.5 cursor-pointer">
+              <span>Basket</span>
+              {count > 0 && (
+                <span className="bg-white text-berry text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                  {count}
+                </span>
+              )}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="bg-blush relative">
-        <div className="max-w-6xl mx-auto px-4 pt-8 pb-6 grid md:grid-cols-[1fr_1.25fr] gap-4 items-center">
-          <div className="space-y-6">
-            <h1 className="font-head font-bold text-4xl sm:text-5xl leading-tight">Beautiful cakes, made for your moments.</h1>
-            <p className="text-gray-600 text-sm sm:text-base">Freshly baked home treats in Hazaribagh with 100% eggless options.</p>
-            <div className="flex flex-wrap gap-3">
-              <a href="#popular" className="btn px-7 py-3.5">Explore Cakes</a>
-              <a href="#custom" className="btn2 bg-white px-7 py-3.5">Customize</a>
+      {/* Hero Section */}
+      <section className="bg-blush pt-10 sm:pt-16 pb-14 relative overflow-hidden">
+        {/* Floating background botanical leaves */}
+        <div className="absolute top-10 left-8 text-2xl opacity-60 float-slow pointer-events-none select-none">🍃</div>
+        <div className="absolute top-1/2 left-4 text-xl opacity-50 float-delayed pointer-events-none select-none">🍃</div>
+        <div className="absolute bottom-8 left-1/3 text-2xl opacity-70 float-slow pointer-events-none select-none">🍓</div>
+
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-[1.1fr_1fr] gap-8 items-center relative z-10">
+          <div className="space-y-6 text-center md:text-left">
+            <span className="inline-block bg-white text-berry border border-roseBorder px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+              ✨ The Healthiest & Most Delicious Cakes
+            </span>
+            <h1 className="font-head font-bold text-4xl sm:text-5xl lg:text-6xl text-berry leading-[1.15]">
+              Pure Artisanal Cakes, <br/>
+              <span className="font-serif italic font-normal text-rose-600">Baked For Your Moments</span>
+            </h1>
+            <p className="text-gray-600 text-sm sm:text-base max-w-lg mx-auto md:mx-0 leading-relaxed">
+              If you appreciate fresh artisan treats without synthetic mixes, don't deny yourself a sweet pleasure — our cakes are crafted specially for you with 100% natural cream and fresh berries.
+            </p>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+              <a href="#menu" className="btn-berry px-8 py-3.5 text-sm uppercase tracking-wider font-bold">
+                View Cake Menu 🍰
+              </a>
+              <a href="#custom" className="btn-outline px-8 py-3.5 text-sm uppercase tracking-wider font-bold">
+                Design Custom ✨
+              </a>
             </div>
           </div>
-          <div className="flex justify-center relative lg:-mr-40">
+
+          {/* Reference-Style Hero Cake Visual */}
+          <div className="relative flex flex-col items-center justify-center">
+            {/* Top floating dropped berry */}
+            <div className="absolute -top-3 right-10 z-20 float-slow pointer-events-none">
+              <span className="text-4xl drop-shadow-md">🍓</span>
+            </div>
+
+            {/* Central Layered Cake */}
+            <div className="relative rounded-3xl p-3 bg-white/70 backdrop-blur border-2 border-white shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
+                alt="Fluffy Berry Cream Cake"
+                className="w-72 h-72 sm:w-96 sm:h-96 object-cover rounded-2xl shadow-inner"
+              />
+            </div>
+
+            {/* Dropped Berries & Mint Accents along base */}
+            <div className="flex items-center justify-center gap-3 -mt-6 z-20">
+              <span className="text-3xl filter drop-shadow float-delayed">🍓</span>
+              <span className="text-2xl filter drop-shadow">🍃</span>
+              <span className="text-4xl filter drop-shadow float-slow">🍓</span>
+              <span className="text-2xl filter drop-shadow">🍃</span>
+              <span className="text-3xl filter drop-shadow float-delayed">🍓</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Frosting Drips Divider */}
+      <FrostingDrips />
+
+      {/* 3 Pillar Features */}
+      <section className="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        {[
+          { icon: '🥦', title: 'Ideal For Balanced Treats', text: 'Light on heavy sugars with pure natural fruit purées and real berry sweetness' },
+          { icon: '🌱', title: '100% Eggless Mastery', text: 'Cloud-soft springy sponges made without egg compromises or condensed milk' },
+          { icon: '🧈', title: 'Pure Real Butter & Cream', text: 'Zero palm fats or synthetic premixes — only genuine dairy butter and cream' }
+        ].map((feat, i) => (
+          <div key={i} className="p-5 rounded-2xl bg-blushLight border border-roseBorder space-y-2">
+            <span className="text-3xl block">{feat.icon}</span>
+            <h4 className="font-head font-bold text-base text-berry">{feat.title}</h4>
+            <p className="text-xs text-gray-600 leading-relaxed">{feat.text}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* Cake Catalog Section */}
+      <section id="menu" className="max-w-6xl mx-auto px-4 py-14 scroll-mt-20">
+        <div className="text-center space-y-3 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-berry bg-blush px-3.5 py-1 rounded-full border border-roseBorder">
+            Freshly Baked Every Morning
+          </span>
+          <h2 className="font-head font-bold text-3xl sm:text-4xl text-berry">
+            Just Look At These Cakes
+          </h2>
+          <p className="text-sm text-gray-600 max-w-md mx-auto">
+            Choose your favourite flavour or click below to build your custom design.
+          </p>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
+            {FILTERS.map(([key, label]) => (
+              <button
+                key={key}
+                aria-pressed={filter === key}
+                onClick={() => setFilter(key)}
+                className="tab-pill border border-roseBorder"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Cake Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {displayedCakes.map(cake => (
+            <div key={cake.id} className="card-bakery p-4 flex flex-col justify-between">
+              <div>
+                <div className="relative overflow-hidden rounded-2xl mb-3 h-48 bg-rose-50">
+                  <img
+                    src={cake.image}
+                    alt={cake.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <span className="absolute top-2.5 left-2.5 bg-white/95 text-berry text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-roseBorder shadow-sm">
+                    {cake.tag}
+                  </span>
+                </div>
+                <h3 className="font-head font-bold text-base text-gray-900 leading-snug">{cake.title}</h3>
+                <p className="text-xs text-gray-500 mt-1 line-clamp-2 leading-relaxed">{cake.desc}</p>
+              </div>
+
+              <div className="pt-4 mt-3 border-t border-roseBorder/60 flex items-center justify-between">
+                <span className="font-head text-xl font-bold text-berry">₹{cake.price}</span>
+                <button
+                  onClick={() => add(cake)}
+                  className="btn-berry px-5 py-2 text-xs uppercase tracking-wider font-bold cursor-pointer"
+                >
+                  Order +
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Secret Natural Ingredients Section */}
+      <section id="ingredients" className="bg-blush py-16 px-4 relative overflow-hidden">
+        <div className="absolute top-8 left-12 text-3xl opacity-50 float-slow pointer-events-none">🍓</div>
+        <div className="absolute bottom-10 right-12 text-3xl opacity-50 float-delayed pointer-events-none">🍓</div>
+
+        <div className="max-w-4xl mx-auto text-center space-y-4 relative z-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-berry bg-white px-3.5 py-1 rounded-full border border-roseBorder shadow-sm">
+            Honest Bakery Standards
+          </span>
+          <h2 className="font-head font-bold text-3xl sm:text-4xl text-berry">
+            The Secret of Our Cakes is Natural Ingredients
+          </h2>
+          <p className="text-sm text-gray-600 max-w-xl mx-auto leading-relaxed">
+            We use only high-grade single-origin couverture chocolate, real Madagascar vanilla beans, fresh fruit compotes, and farm-fresh dairy. Zero premix powders.
+          </p>
+
+          <div className="pt-6 relative max-w-md mx-auto">
             <img
-              src="images/hero-cake.png"
-              alt="Fresh cream cake topped with berries"
-              style={{ filter: 'drop-shadow(0 28px 28px rgba(176,17,63,.28))' }}
-              onError={e => {
-                const t = e.currentTarget, step = +(t.dataset.step || 0);
-                t.dataset.step = step + 1;
-                t.style.filter = 'none';
-                if (step === 0) { t.src = 'images/strawberry-cake.jpg'; t.classList.add('mix-blend-multiply'); }
-                else if (step === 1) { t.src = IMG('photo-1535141192574-5d4897c13136', 900); t.classList.remove('mix-blend-multiply'); t.classList.add('rounded-full'); }
-                else t.onerror = null;
-              }}
-              className="w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[44rem] lg:h-[44rem] max-w-none object-contain"
+              src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=700&q=80"
+              alt="Artisanal layered celebration cake"
+              className="w-64 h-64 sm:w-80 sm:h-80 mx-auto object-cover rounded-full shadow-2xl ring-8 ring-white border-4 border-roseBorder"
             />
           </div>
         </div>
       </section>
 
-      {/* Wave Dividers */}
-      <svg viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true" className="block w-full h-20 sm:h-28 lg:h-40 -mt-px">
-        <path d="M0,0 L0,150 C30,143 120,108 180,110 C240,112 300,163 360,165 C420,167 480,119 540,120 C600,121 660,169 720,170 C780,171 840,127 900,125 C960,123 1020,162 1080,160 C1140,158 1200,117 1260,115 C1320,113 1410,144 1440,150 L1440,0 Z" fill="#ffd3df" />
-        <path d="M0,0 L0,112 C30,118 120,150 180,148 C240,146 300,100 360,100 C420,100 480,149 540,150 C600,151 660,109 720,108 C780,107 840,147 900,145 C960,143 1020,99 1080,98 C1140,97 1200,138 1260,140 C1320,142 1410,117 1440,112 L1440,0 Z" fill="#ffdfe8" />
-        <path d="M0,0 L0,70 C30,75 120,99 180,98 C240,97 300,63 360,64 C420,65 480,104 540,104 C600,104 660,67 720,66 C780,65 840,101 900,100 C960,99 1020,61 1080,60 C1140,59 1200,90 1260,92 C1320,94 1410,75 1440,72 L1440,0 Z" fill="#ffe9ee" />
-      </svg>
-
-      {/* Quick Benefits */}
-      <section className="max-w-4xl mx-auto px-4 pt-6 pb-10 grid sm:grid-cols-3 gap-6 text-center">
-        {[[CAKES[0].image, 'Freshly Baked'], [CAKES[1].image, 'Custom Designs'], [CAKES[4].image, 'Easy Ordering']].map(([ph, t]) => (
-          <div key={t} className="flex sm:flex-col items-center gap-3 justify-center">
-            <Img src={ph} alt="" className="w-20 h-20 rounded-full object-cover ring-4 ring-blush" />
-            <p className="font-head font-semibold text-lg text-berry">{t}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Popular Cakes */}
-      <section id="popular" className="max-w-6xl mx-auto px-4 py-12 scroll-mt-16 text-center">
-        <h2 className="font-head font-bold text-3xl mb-10">Popular Cakes</h2>
-        <div className={`grid gap-x-4 gap-y-10 ${showAll ? 'grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3 max-w-3xl mx-auto'}`}>
-          {(showAll ? CAKES : CAKES.filter(c => POPULAR.includes(c.id))).map(c => (
-            <div key={c.id} className="flex flex-col items-center">
-              <Img src={c.image} alt={c.title} className="w-36 h-36 sm:w-40 sm:h-40 rounded-full object-cover shadow-lg ring-4 ring-blush" />
-              <h3 className="font-head font-semibold text-base mt-4 leading-snug">{c.title}</h3>
-              <p className="font-head font-bold text-lg text-gray-900 mt-1">₹{c.price}</p>
-              <button onClick={() => add(c)} className="btn px-8 py-2 mt-2 text-sm">Buy</button>
-            </div>
-          ))}
+      {/* Interactive Custom Cake Studio */}
+      <section id="custom" className="max-w-6xl mx-auto px-4 py-16 scroll-mt-20">
+        <div className="text-center space-y-2 mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-berry bg-blush px-3 py-1 rounded-full border border-roseBorder">
+            Live Cake Studio
+          </span>
+          <h2 className="font-head font-bold text-3xl sm:text-4xl text-berry">
+            Customize Your Dream Cake in 60 Seconds 🎂
+          </h2>
         </div>
-        <button onClick={() => setShowAll(v => !v)} className="btn2 px-6 py-2.5 mt-10 text-sm">{showAll ? 'Show fewer' : 'See all cakes'}</button>
-      </section>
 
-      {/* Customize */}
-      <Edge />
-      <section id="custom" className="bg-blush scroll-mt-16">
-        <div className="max-w-6xl mx-auto px-4 py-14">
-          <h2 className="font-head font-bold text-3xl text-center mb-8">Customize Your Cake</h2>
-          <div className="grid lg:grid-cols-5 gap-6 items-start">
-            <div className="lg:col-span-3 card p-5 space-y-5">
-              <div>
-                <p className="text-sm font-semibold mb-2">Flavour</p>
-                <div className="flex flex-wrap gap-2">
-                  {FLAVOURS.map(f => (
-                    <button key={f} onClick={() => setCake(p => ({ ...p, flavour: f }))} aria-pressed={cake.flavour === f} className={chip(cake.flavour === f)}>
-                      {f}
-                    </button>
-                  ))}
-                </div>
+        <div className="grid lg:grid-cols-5 gap-8 items-start">
+          <div className="lg:col-span-3 card-bakery p-6 space-y-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">1. Choose Flavour & Base</p>
+              <div className="flex flex-wrap gap-2">
+                {FLAVOURS.map(f => (
+                  <button
+                    key={f}
+                    onClick={() => setCake(p => ({ ...p, flavour: f }))}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                      cake.flavour === f ? 'bg-berry text-white border-berry shadow-sm' : 'bg-white text-gray-700 border-roseBorder hover:border-berry'
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
               </div>
-              <div>
-                <p className="text-sm font-semibold mb-2">Style</p>
-                <div className="flex flex-wrap gap-2">
-                  {STYLES.map(x => (
-                    <button key={x} onClick={() => setCake(p => ({ ...p, style: x }))} aria-pressed={cake.style === x} className={chip(cake.style === x)}>
-                      {x}
-                    </button>
-                  ))}
-                </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">2. Frosting Aesthetic</p>
+              <div className="flex flex-wrap gap-2">
+                {STYLES.map(s => (
+                  <button
+                    key={s}
+                    onClick={() => setCake(p => ({ ...p, style: s }))}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                      cake.style === s ? 'bg-berry text-white border-berry shadow-sm' : 'bg-white text-gray-700 border-roseBorder hover:border-berry'
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
               </div>
-              <div className="grid sm:grid-cols-3 gap-3">
-                <label className="text-sm font-semibold">Size
-                  <select className="field mt-1 font-normal" value={cake.size} onChange={e => setCake(p => ({ ...p, size: e.target.value }))}>
-                    {SIZES.map(x => <option key={x[0]}>{x[0]}</option>)}
-                  </select>
-                </label>
-                <label className="text-sm font-semibold">Type
-                  <select className="field mt-1 font-normal" value={cake.diet} onChange={e => setCake(p => ({ ...p, diet: e.target.value }))}>
-                    <option>Eggless</option><option>With egg</option><option>Sugar-free</option>
-                  </select>
-                </label>
-                <label className="text-sm font-semibold">Topper (+₹50)
-                  <select className="field mt-1 font-normal" value={cake.topper} onChange={e => setCake(p => ({ ...p, topper: e.target.value }))}>
-                    <option>None</option><option>Happy Birthday</option><option>Star & butterflies</option><option>Heart</option>
-                  </select>
-                </label>
-              </div>
-              <label className="text-sm font-semibold block">Message on cake
-                <input className="field mt-1 font-normal" maxLength="30" value={cake.message} onChange={e => setCake(p => ({ ...p, message: e.target.value }))} placeholder="Happy Birthday!" />
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-3">
+              <label className="text-xs font-bold uppercase tracking-wider text-gray-700">Size / Weight
+                <select className="field mt-1.5 font-normal" value={cake.size} onChange={e => setCake(p => ({ ...p, size: e.target.value }))}>
+                  {SIZES.map(x => <option key={x[0]}>{x[0]}</option>)}
+                </select>
+              </label>
+              <label className="text-xs font-bold uppercase tracking-wider text-gray-700">Dietary
+                <select className="field mt-1.5 font-normal" value={cake.diet} onChange={e => setCake(p => ({ ...p, diet: e.target.value }))}>
+                  <option>100% Eggless 🌱</option>
+                  <option>Classic Sponge 🥚</option>
+                  <option>Sugar-Free Stevia 🌿</option>
+                </select>
+              </label>
+              <label className="text-xs font-bold uppercase tracking-wider text-gray-700">Acrylic Topper (+₹50)
+                <select className="field mt-1.5 font-normal" value={cake.topper} onChange={e => setCake(p => ({ ...p, topper: e.target.value }))}>
+                  <option>None</option>
+                  <option>Golden Happy Birthday</option>
+                  <option>Star & Butterflies</option>
+                  <option>Romantic Heart</option>
+                </select>
               </label>
             </div>
-            <div className="lg:col-span-2 card p-5 lg:sticky lg:top-20 space-y-3">
-              <div className="relative bg-blush rounded-xl overflow-hidden">
-                <Img src="images/strawberry-cake.jpg" alt="Cake preview" className="w-full h-48 object-contain mix-blend-multiply" />
-                <p className="absolute bottom-2 left-2 right-2 text-center font-head text-berry bg-white/90 rounded-lg py-1.5 px-2 truncate">“{cake.message || '…'}”</p>
-              </div>
-              <p className="text-sm text-gray-600">{cake.flavour} · {cake.style} · {cake.size} · {cake.diet}</p>
-              <div className="flex items-center justify-between pt-3 border-t border-rose2">
-                <span className="font-head text-2xl font-bold text-berry">₹{customPrice}</span>
-                <button onClick={addCustom} className="btn px-6 py-2.5">Add to cart</button>
-              </div>
+
+            <label className="text-xs font-bold uppercase tracking-wider text-gray-700 block">
+              Message on Cake (Hand-Piped)
+              <input
+                className="field mt-1.5 font-normal"
+                maxLength="30"
+                value={cake.message}
+                onChange={e => setCake(p => ({ ...p, message: e.target.value }))}
+                placeholder="e.g. Happy 21st Birthday Tanu!"
+              />
+            </label>
+          </div>
+
+          {/* Live Preview Card */}
+          <div className="lg:col-span-2 card-bakery p-6 lg:sticky lg:top-24 space-y-4">
+            <h4 className="font-head font-bold text-sm text-gray-500 uppercase tracking-wider">Live Preview</h4>
+            <div className="relative bg-blush rounded-2xl overflow-hidden p-6 text-center border border-roseBorder">
+              <span className="text-5xl block mb-2">🎂</span>
+              <p className="font-serif italic font-bold text-lg text-berry bg-white/95 rounded-xl py-2 px-3 shadow-sm truncate">
+                "{cake.message || 'Your Text Here'}"
+              </p>
+            </div>
+            <div className="space-y-1 text-xs text-gray-600">
+              <div className="flex justify-between"><span>Base:</span><strong className="text-gray-800">{cake.flavour}</strong></div>
+              <div className="flex justify-between"><span>Style:</span><strong className="text-gray-800">{cake.style}</strong></div>
+              <div className="flex justify-between"><span>Size:</span><strong className="text-gray-800">{cake.size}</strong></div>
+              <div className="flex justify-between"><span>Diet:</span><strong className="text-gray-800">{cake.diet}</strong></div>
+            </div>
+            <div className="pt-3 border-t border-roseBorder flex items-center justify-between">
+              <span className="font-head text-2xl font-bold text-berry">₹{customPrice}</span>
+              <button onClick={addCustomCake} className="btn-berry px-6 py-2.5 text-xs uppercase tracking-wider font-bold cursor-pointer">
+                Add to Basket 🛍️
+              </button>
             </div>
           </div>
         </div>
       </section>
-      <Edge bottom />
 
-      {/* Gallery */}
-      <section id="gallery" className="max-w-6xl mx-auto px-4 py-16 scroll-mt-16">
-        <h2 className="font-head font-bold text-3xl text-center mb-8">Our Cake Gallery</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {CAKES.slice(0, 6).map((c, i) => (
-            <Img key={c.id} src={c.image} alt={c.title} className={`w-full object-cover rounded-3xl ${i === 0 ? 'row-span-2 h-full min-h-[16rem]' : 'h-40 sm:h-52'}`} />
-          ))}
-        </div>
-      </section>
-
-      {/* Why Cake & Crumbs */}
-      <Edge />
-      <section className="bg-blush">
-        <div className="max-w-4xl mx-auto px-4 py-14 text-center">
-          <h2 className="font-head font-bold text-3xl">Why Cake & Crumbs?</h2>
-          <div className="grid sm:grid-cols-3 gap-6 mt-8">
-            {[[CAKES[2].image, 'Eggless options'], [CAKES[3].image, 'Made from scratch'], [CAKES[5].image, 'Local delivery']].map(([ph, t]) => (
-              <div key={t} className="card p-3 overflow-hidden">
-                <Img src={ph} alt="" className="w-full h-32 object-cover rounded-xl" />
-                <p className="font-head font-semibold text-berry mt-3 mb-1">{t}</p>
+      {/* Customer Reviews */}
+      <section id="reviews" className="bg-blushLight py-16 px-4">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="font-head font-bold text-3xl text-berry">Sweet Love From Customers</h2>
+            <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">500+ celebrations sweetened • 4.9 ★ Rating</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { name: 'Priya S.', text: 'The Korean bento cake was so delicate and the Belgian chocolate sponge was cloud-soft. Arrived perfectly!' },
+              { name: 'Ananya V.', text: 'The Vintage Lambeth piping was an absolute masterpiece. Best eggless bakery around.' },
+              { name: 'Rahul K.', text: 'Lotus Biscoff cake finished in five minutes. Seamless WhatsApp order placement.' }
+            ].map((r, i) => (
+              <div key={i} className="card-bakery p-6 space-y-3 bg-white">
+                <div className="text-amber-400 text-sm tracking-widest">★★★★★</div>
+                <p className="text-xs text-gray-600 leading-relaxed italic">"{r.text}"</p>
+                <div className="pt-2 border-t border-roseBorder text-xs font-bold text-berry">{r.name}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
-      <Edge bottom />
-
-      {/* Customer Reviews */}
-      <section id="reviews" className="max-w-6xl mx-auto px-4 py-16 scroll-mt-16">
-        <h2 className="font-head font-bold text-3xl text-center mb-8">Customer Reviews</h2>
-        <div className="grid sm:grid-cols-3 gap-4">
-          {REVIEWS.map(r => (
-            <figure key={r.name} className="card p-5">
-              <p className="text-amber-400 tracking-widest" aria-label="5 out of 5 stars">★★★★★</p>
-              <blockquote className="text-gray-700 mt-2">“{r.text}”</blockquote>
-              <figcaption className="text-sm font-semibold text-berry mt-3">{r.name}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* WhatsApp CTA */}
-      <Edge />
-      <section className="bg-blush">
-        <div className="max-w-4xl mx-auto px-4 py-14 grid sm:grid-cols-2 gap-6 items-center text-center sm:text-left">
-          <div className="space-y-6">
-            <h2 className="font-head font-bold text-3xl sm:text-4xl">Ready for something sweet?</h2>
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer" className="btn inline-block px-8 py-3.5">Order on WhatsApp</a>
-          </div>
-          <Img src="images/strawberry-cake.jpg" alt="Strawberry cream cake" className="w-64 h-64 mx-auto object-contain mix-blend-multiply" />
-        </div>
-      </section>
-      <Edge bottom />
 
       {/* Footer */}
-      <footer className="py-8 text-center text-sm text-gray-600">
-        <div className="flex justify-center"><Logo size={36} /></div>
-        <p className="mt-1">Hazaribagh · Delivery and pickup</p>
-        <p className="mt-1">© 2026 Cake & Crumbs</p>
+      <footer className="py-10 text-center text-xs text-gray-500 border-t border-roseBorder bg-white">
+        <div className="flex justify-center mb-3"><Logo /></div>
+        <p>12 Baker's Lane, Sweet Valley • Fresh Home Delivery & Pickup</p>
+        <p className="mt-1">© 2026 Cake & Crumbs. Handcrafted with passion.</p>
       </footer>
 
       {/* Cart Drawer */}
       {cartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/30" onClick={() => setCartOpen(false)}>
-          <aside onClick={e => e.stopPropagation()} role="dialog" aria-label="Cart" className="slide bg-white w-full max-w-md h-full p-5 flex flex-col overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-head text-xl font-bold text-berry">Your cart</h3>
-              <button onClick={() => setCartOpen(false)} aria-label="Close cart" className="p-2 text-xl hover:text-berry">✕</button>
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm" onClick={() => setCartOpen(false)}>
+          <aside onClick={e => e.stopPropagation()} className="slide-drawer bg-white w-full max-w-md h-full p-6 flex flex-col overflow-y-auto">
+            <div className="flex items-center justify-between pb-4 border-b border-roseBorder">
+              <h3 className="font-head text-xl font-bold text-berry">Your Basket</h3>
+              <button onClick={() => setCartOpen(false)} className="text-gray-400 hover:text-berry text-2xl font-bold p-1 cursor-pointer">✕</button>
             </div>
+
             {cart.length === 0 ? (
-              <p className="text-gray-500 py-10 text-center">Your cart is empty. Pick a cake from the menu.</p>
+              <div className="flex-1 flex flex-col items-center justify-center text-center space-y-3 text-gray-400">
+                <span className="text-5xl">🍰</span>
+                <p className="font-semibold text-gray-600">Your basket is empty</p>
+                <p className="text-xs">Pick your favourite delight from our menu to proceed.</p>
+              </div>
             ) : (
               <>
-                <div className="space-y-3 flex-1">
+                <div className="flex-1 py-4 space-y-3 overflow-y-auto">
                   {cart.map(i => (
-                    <div key={i.id} className="flex items-center gap-3 card p-2">
-                      <Img src={i.image} alt="" className="w-14 h-14 rounded-xl object-cover" />
+                    <div key={i.id} className="flex items-center gap-3 p-3 bg-blushLight rounded-2xl border border-roseBorder">
+                      <img src={i.image} alt={i.title} className="w-14 h-14 rounded-xl object-cover" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold leading-snug">{i.title}</p>
-                        {i.note && <p className="text-xs text-gray-500 truncate">{i.note}</p>}
-                        <p className="text-sm font-bold text-berry">₹{i.price * i.qty}</p>
+                        <p className="text-xs font-bold text-gray-800 truncate">{i.title}</p>
+                        {i.desc && <p className="text-[10px] text-gray-500 truncate">{i.desc}</p>}
+                        <span className="text-xs font-bold text-berry">₹{i.price * i.qty}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <button onClick={() => change(i.id, -1)} aria-label="Decrease" className="w-7 h-7 rounded-lg border border-rose2 flex items-center justify-center font-bold">−</button>
-                        <span className="w-4 text-center text-sm">{i.qty}</span>
-                        <button onClick={() => change(i.id, 1)} aria-label="Increase" className="w-7 h-7 rounded-lg border border-rose2 flex items-center justify-center font-bold">+</button>
+                      <div className="flex items-center gap-2 bg-white rounded-xl px-2 py-1 border border-roseBorder">
+                        <button onClick={() => changeQty(i.id, -1)} className="text-xs font-bold text-gray-500 hover:text-berry w-4 cursor-pointer">−</button>
+                        <span className="text-xs font-bold text-gray-800">{i.qty}</span>
+                        <button onClick={() => changeQty(i.id, 1)} className="text-xs font-bold text-gray-500 hover:text-berry w-4 cursor-pointer">+</button>
                       </div>
                     </div>
                   ))}
                 </div>
-                <form onSubmit={checkout} className="space-y-2 pt-4 mt-4 border-t border-rose-100">
-                  <input required className="field" placeholder="Name" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
-                  <input required type="tel" className="field" placeholder="Phone" value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
-                  <input required className="field" placeholder="Delivery address" value={form.address} onChange={e => setForm(p => ({ ...p, address: e.target.value }))} />
-                  <input type="date" aria-label="Delivery date" className="field" value={form.date} onChange={e => setForm(p => ({ ...p, date: e.target.value }))} />
-                  <div className="flex justify-between font-bold pt-2"><span>Total</span><span className="text-berry">₹{total}</span></div>
-                  <button type="submit" className="btn w-full py-3">Order on WhatsApp</button>
+
+                <form onSubmit={checkout} className="pt-4 border-t border-roseBorder space-y-2.5">
+                  <input required className="field" placeholder="Customer Name *" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
+                  <input required type="tel" className="field" placeholder="WhatsApp Number *" value={form.phone} onChange={e => setForm(p => ({ ...p, phone: e.target.value }))} />
+                  <input required className="field" placeholder="Delivery Address / Landmark *" value={form.address} onChange={e => setForm(p => ({ ...p, address: e.target.value }))} />
+                  <input type="date" className="field text-gray-600" value={form.date} onChange={e => setForm(p => ({ ...p, date: e.target.value }))} />
+
+                  <div className="flex justify-between items-center pt-2 font-head font-bold">
+                    <span>Total Amount:</span>
+                    <span className="text-2xl text-berry">₹{total}</span>
+                  </div>
+
+                  <button type="submit" className="btn-berry w-full py-3.5 text-xs uppercase tracking-wider font-bold cursor-pointer mt-2">
+                    Send Order to WhatsApp 💬
+                  </button>
                 </form>
               </>
             )}
@@ -416,15 +613,21 @@ function App() {
         </div>
       )}
 
-      {/* Confirmation Modal */}
+      {/* Order Confirmation Modal */}
       {done && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
-          <div role="dialog" aria-label="Order ready" className="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-3 shadow-xl">
-            <p className="text-4xl">🎉</p>
-            <h3 className="font-head text-2xl font-bold text-berry">Almost done</h3>
-            <p className="text-gray-600 text-sm">Send your order of ₹{done.total} on WhatsApp to confirm the delivery slot.</p>
-            <a href={done.url} target="_blank" rel="noreferrer" className="btn block py-3">Open WhatsApp</a>
-            <button onClick={() => setDone(null)} className="btn2 w-full py-2.5">Back to menu</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-roseBorder">
+            <span className="text-4xl block">🎉</span>
+            <h3 className="font-head text-2xl font-bold text-berry">Order Ready to Send!</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
+              Total: <strong>₹{done.total}</strong>. Click below to launch WhatsApp and finalize your slot with the baker.
+            </p>
+            <a href={done.url} target="_blank" rel="noreferrer" className="btn-berry block py-3 text-xs uppercase tracking-wider font-bold">
+              Open WhatsApp Now 💬
+            </a>
+            <button onClick={() => setDone(null)} className="btn-outline w-full py-2.5 text-xs uppercase tracking-wider font-bold cursor-pointer">
+              Back to Bakery
+            </button>
           </div>
         </div>
       )}
